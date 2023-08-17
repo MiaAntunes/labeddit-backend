@@ -15,7 +15,7 @@ export class UserDatabase extends BaseDatabase{
         return userDB as UserDB | undefined
     }
 
-    public async findUserId (id: string): Promise<UserDB>{
+    public async findUserId (id: string): Promise<UserDB | undefined>{
 
       const [results]= await BaseDatabase.connection(UserDatabase.TABLE_USERS).where({id: id})
 

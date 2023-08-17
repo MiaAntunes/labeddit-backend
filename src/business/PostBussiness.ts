@@ -64,8 +64,8 @@ export class PostsBusiness {
 
         const post = new PostsModels(
             newId,
-            user.id,
-            user.name,
+            payload.id,
+            payload.name,
             newContent,
             0,
             0,

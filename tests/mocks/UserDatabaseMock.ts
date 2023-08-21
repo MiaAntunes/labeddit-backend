@@ -2,6 +2,8 @@ import { USER_ROLES, UserDB } from "../../src/models/UserModel"
 import { BaseDatabase } from "../../src/sql/BaseDatabase"
 
 
+
+
 const usersMock: UserDB[] = [
   {
     id: "id-mock-fulano",

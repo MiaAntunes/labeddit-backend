@@ -62,7 +62,7 @@ export class UserBusiness{
 
         const verificationUserExist = await this.userDatabase.findUserByEmail(newEmail)// Ok está pegando
 
-        if (!verificationUserExist) { //  regra de negocio
+        if (verificationUserExist) { //  regra de negocio
             throw new BadRequestError("esse email já existe.")
         }
 

@@ -5,14 +5,14 @@ import { BaseDatabase } from "../BaseDatabase";
 export class UserDatabase extends BaseDatabase{
     public static TABLE_USERS = "users"
 
-    public findUserByEmail = async ( email: string): Promise<UserDB | undefined> => {
+    public findUserByEmail = async ( newEmail: string): Promise<UserDB> => {
 
         const [userDB] = await BaseDatabase
           .connection(UserDatabase.TABLE_USERS)
-          .select()
-          .where({ email })
+          .where({email: newEmail })
+          console.log(userDB)
     
-        return userDB as UserDB | undefined
+        return userDB as UserDB 
     }
 
     public async findUserId (id: string): Promise<UserDB | undefined>{

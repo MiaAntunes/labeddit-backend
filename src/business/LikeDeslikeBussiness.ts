@@ -1,5 +1,6 @@
 import { LikeOrDeslikeInputDto, LikeOrDeslikeOutInputDto } from "../dto/LikeDeslikeDto/LikeOrDeslikeDto";
 import { BadRequestError } from "../errors/BadRequestError";
+import { UnauthorizedError } from "../errors/UnauthorizedError";
 import { LikeDislikeDB, POST_LIKE, PostsModels } from "../models/PostsModel";
 import { TokenManager } from "../services/TokenManager";
 import { LikesDeslikesDatabase } from "../sql/database/LikeDeslikeDatabase";
@@ -18,6 +19,7 @@ export class LikeDeslikeBusiness{
         const {idPost, likeOrDeslike, token} = input
 
         const verificationPostExist = await this.postsDatabase.findPost(idPost)
+        // console.log(verificationPostExist)
 
         const payload = this.tokenManager.getPayload(token) 
 
@@ -26,7 +28,7 @@ export class LikeDeslikeBusiness{
         }
 
         if(payload === null){
-            throw new BadRequestError("Não autorizado")
+            throw new UnauthorizedError()
         }
 
         if(verificationPostExist.creator_id === payload.id){
@@ -52,7 +54,6 @@ export class LikeDeslikeBusiness{
             post_id: postModels.getId(),
             like: likeSQLlite
         }
-
 
         const resultAlreadyLikeOrDeslike = await this.likesDeslikesDatabase.findLikeOrDeslike(likeDeslikeDB)
 

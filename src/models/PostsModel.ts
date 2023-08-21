@@ -25,6 +25,31 @@ export interface PostModel {
     }
 }
 
+// ! HELP NO TYPE DO POST +COMMENT DB
+export interface PostIdCommentModel{
+    postId: string,
+    content: string,
+    likes: number,
+    deslikes: number,
+    createdAt: string,
+    updatedAt: string
+    creator: {
+        usersId: string,
+        name: string
+    }
+    comments: [
+        {
+            userName: string,
+            comments: string,
+            likes: number,
+            deslikes:number,
+            createdAt: string
+        }   
+    ]
+}
+
+
+
 export interface LikeDislikeDB {
     user_id: string,
     post_id: string,

@@ -1,12 +1,12 @@
 import z from "zod";
-import { PostModel } from "../../models/PostsModel";
+import { PostIdCommentModel, PostModel } from "../../models/PostsModel";
 
 export interface GetPostIdInputDTO {
     idPost: string,
     token: string
 }
 
-export type GetPostIdOutinputDTO = PostModel[]
+export type GetPostIdOutinputDTO = PostIdCommentModel
 
 export const GetPostIdShema = z.object({
     idPost: z.string()

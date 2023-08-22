@@ -22,7 +22,5 @@ app.use('/user', userRouter)
 app.use('/posts', postsRouter)
 app.use('/post', postsRouter)
 app.use('/post/like', likeDeslikeRouter)
-app.use('/post/comments', commentsRouter)
-
-
+app.use('/post/comment', commentsRouter)
 app.use('/post/:id/comments', commentsRouter) // -> Criar um comentário

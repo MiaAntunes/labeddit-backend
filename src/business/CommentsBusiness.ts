@@ -1,4 +1,5 @@
 import { CreateCommentInputDto, CreateCommentOutInputDto } from "../dto/CommentDto/createComments";
+import { DeleteCommentInputDto, DeleteCommentOutInputDto } from "../dto/CommentDto/deleteCommentDto";
 import { LikeOrDeslikeCommentsInputDto, LikeOrDeslikeCommentsOutInputDto } from "../dto/CommentDto/putLikeOrDeslikeComments.dto";
 import { BadRequestError } from "../errors/BadRequestError";
 import { UnauthorizedError } from "../errors/UnauthorizedError";
@@ -113,7 +114,7 @@ export class CommentsBusiness {
             verificationCommentsExist.post_id,
             verificationCommentsExist.comment,
             verificationCommentsExist.likes,
-            verificationCommentsExist.deslike,
+            verificationCommentsExist.deslikes,
             verificationCommentsExist.created_at
         )
 
@@ -161,6 +162,50 @@ export class CommentsBusiness {
 
         const output = {
             message: "Ok"
+        }
+
+        return output
+    }
+
+    public deleteComment = async (input:DeleteCommentInputDto): Promise<DeleteCommentOutInputDto> =>{
+        const {idComment, token} = input
+
+        const payload = this.tokenManager.getPayload(token)
+
+        if (!payload) {
+            throw new UnauthorizedError()
+        }
+
+        const commentDB = await this.commentDatabase.findComments(idComment)
+
+        if(!commentDB){
+            throw new BadRequestError("Esse post está incorreto ou não existe")
+        }
+
+        await this.commentDatabase.deleteComment(commentDB)
+
+        // ! ATUALIZAR O POSTDB 
+        const postDB = await this.postDataBase.findPost(commentDB.post_id)
+
+        const post = new PostsModels(
+            postDB.id,
+            postDB.creator_id,
+            postDB.creator_name,
+            postDB.content,
+            postDB.likes,
+            postDB.deslikes,
+            postDB.comments,
+            postDB.created_at,
+            postDB.updated_at
+        )
+
+        const postUpdateComments = post.removeComments()
+        const postDBUpdate = post.toDBModel()
+
+        await this.postDataBase.updatePost(postDBUpdate)
+
+        const output ={
+            message: "Seu post foi deletado"
         }
 
         return output

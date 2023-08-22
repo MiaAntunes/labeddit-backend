@@ -1,3 +1,4 @@
+import { CommentModelIdPost } from "./Comments"
 
 export interface PostDB {
     id: string,
@@ -37,15 +38,7 @@ export interface PostIdCommentModel{
         usersId: string,
         name: string
     }
-    comments: [
-        {
-            userName: string,
-            comments: string,
-            likes: number,
-            deslikes:number,
-            createdAt: string
-        }   
-    ]
+    comments: Array<CommentModelIdPost>
 }
 
 

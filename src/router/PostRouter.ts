@@ -5,6 +5,7 @@ import { TokenManager } from "../services/TokenManager";
 import { PostsBussiness } from "../business/PostBussiness";
 import { PostsDatabase } from "../sql/database/PostDatabase";
 import { UserDatabase } from "../sql/database/UserDatabase";
+import { CommentDatabase } from "../sql/database/CommentDatabase";
 
 
 export const postsRouter = express.Router()
@@ -13,7 +14,8 @@ const postsControllers = new PostsControllers(
         new PostsDatabase(),
         new IdGenerator(),
         new TokenManager(),
-        new UserDatabase()
+        new UserDatabase(),
+        new CommentDatabase()
     )
 );
 
@@ -21,3 +23,4 @@ const postsControllers = new PostsControllers(
 postsRouter.get('/', postsControllers.getPostsAll)
 postsRouter.get('/:id', postsControllers.getPostId)
 postsRouter.post('/', postsControllers.createPost)
+postsRouter.delete('/:id', postsControllers.deletePost)

@@ -18,5 +18,6 @@ const commentsControllers = new CommentsControllers(
    ) 
 )
 
-commentsRouter.post("/", commentsControllers.createComment)
+commentsRouter.post("/:idPost", commentsControllers.createComment)
 commentsRouter.put("/:id", commentsControllers.addLikeOrDeslikeComment)
+commentsRouter.delete("/:id", commentsControllers.deleteComment)

@@ -1,4 +1,4 @@
--- Active: 1692632336849@@127.0.0.1@3306
+-- Active: 1692708691359@@127.0.0.1@3306
 
 CREATE TABLE users (
     id TEXT PRIMARY KEY UNIQUE NOT NULL,
@@ -20,9 +20,6 @@ CREATE TABLE posts (
     created_at TEXT DEFAULT (DATETIME()) NOT NULL,
     updated_at TEXT DEFAULT (DATETIME()) NOT NULL,
     FOREIGN KEY (creator_id) REFERENCES users(id)
-      ON UPDATE CASCADE
-	    ON DELETE CASCADE
-    FOREIGN KEY (creator_name) REFERENCES users(name)
       ON UPDATE CASCADE
 	    ON DELETE CASCADE
 );
@@ -50,13 +47,10 @@ CREATE TABLE comments(
     created_at TEXT DEFAULT (DATETIME()) NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id)
       ON UPDATE CASCADE
-	  ON DELETE CASCADE
-        FOREIGN KEY (user_name) REFERENCES users(name)
-      ON UPDATE CASCADE
-	  ON DELETE CASCADE
+	    ON DELETE CASCADE
     FOREIGN KEY (post_id) REFERENCES posts(id)
       ON UPDATE CASCADE
-	  ON DELETE CASCADE
+	    ON DELETE CASCADE
 );
 
 CREATE TABLE likeDeslikeComments(

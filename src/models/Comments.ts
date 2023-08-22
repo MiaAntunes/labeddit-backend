@@ -5,7 +5,7 @@ export interface CommentDB {
     post_id:string,
     comment: string,
     likes: number,
-    deslike: number,
+    deslikes: number,
     created_at: string
 }
 
@@ -16,7 +16,16 @@ export interface CommentModel {
     postId: string,
     comment: string,
     likes: number,
-    deslike: number,
+    deslikes: number,
+    createdAt: string
+}
+
+export interface CommentModelIdPost {
+    id: string,
+    userName: string,
+    comments: string,
+    likes: number,
+    deslikes:number,
     createdAt: string
 }
 
@@ -132,7 +141,7 @@ export class CommentsModels {
           post_id: this.postId,
           comment: this.comment,
           likes: this.likes,
-          deslike:this.deslikes,
+          deslikes:this.deslikes,
           created_at: this.createdAt
         }
       }
@@ -145,7 +154,18 @@ export class CommentsModels {
           postId: this.postId,
           comment: this.comment,
           likes: this.likes,
-          deslike: this.deslikes,
+          deslikes: this.deslikes,
+          createdAt: this.createdAt
+        }
+      }
+
+      public toBusinessModelByIdPost(): CommentModelIdPost {
+        return {
+          id: this.id,
+          userName:this.userName,
+          comments: this.comment,
+          likes: this.likes,
+          deslikes: this.deslikes,
           createdAt: this.createdAt
         }
       }

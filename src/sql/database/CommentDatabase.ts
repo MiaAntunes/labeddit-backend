@@ -26,6 +26,7 @@ export class CommentDatabase extends BaseDatabase{
         const results = await BaseDatabase
         .connection(CommentDatabase.TABLE_COMMENTS)
         .where({post_id:idPost})
+        console.log(results, "oi")
 
         return results
     }
@@ -36,7 +37,7 @@ export class CommentDatabase extends BaseDatabase{
         .connection(CommentDatabase.TABLE_LIKEDESLIKECOMMENTS)
         .select()
         .where({
-            comments_id: likeDeslikeDB.comment_id,
+            comments_id: likeDeslikeDB.comments_id,
             post_id: likeDeslikeDB.post_id,
             user_id: likeDeslikeDB.user_id
         })
@@ -57,7 +58,7 @@ export class CommentDatabase extends BaseDatabase{
         .connection(CommentDatabase.TABLE_LIKEDESLIKECOMMENTS)
         .delete()
         .where({
-            comments_id: likeDeslikeDB.comment_id,
+            comments_id: likeDeslikeDB.comments_id,
             user_id: likeDeslikeDB.user_id,
             post_id: likeDeslikeDB.post_id
         })
@@ -70,7 +71,7 @@ export class CommentDatabase extends BaseDatabase{
         .connection(CommentDatabase.TABLE_LIKEDESLIKECOMMENTS)
         .update(likeDeslikeDB)
         .where({
-            comments_id: likeDeslikeDB.comment_id,
+            comments_id: likeDeslikeDB.comments_id,
             user_id: likeDeslikeDB.user_id,
             post_id: likeDeslikeDB.post_id
         }) 

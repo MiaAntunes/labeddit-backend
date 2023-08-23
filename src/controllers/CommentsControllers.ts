@@ -43,7 +43,6 @@ export class CommentsControllers {
 
             const input = LikeOrDeslikeCommentsSchema.parse({
                 idComments: req.params.id as string,
-                idPost: req.params.id as string,
                 likeOrDeslike: req.body.like as boolean,
                 token: req.headers.authorization as string
             })

@@ -58,7 +58,7 @@ export class PostsBussiness {
     // //! Estou com dúvida para juntar o post + todos os comentários daquele post
     public getPostId = async (input: GetPostIdInputDTO): Promise<GetPostIdOutinputDTO> => {
         const { idPost, token } = input
-
+        console.log("oie")
         const payload = this.tokenManager.getPayload(token)
 
         if (!payload) {
@@ -68,16 +68,12 @@ export class PostsBussiness {
         const postDB = await this.postsDatabase.findPost(idPost)
 
         if(!postDB){
-            throw new BadRequestError("Esse post não existe ou id está errado")
+            throw new BadRequestError("Esse idPost está incorreto ou não existe mais")
         }
 
         const commentsByPostId = await this.commentDatabase.findCommentsByIdPost(idPost)
         console.log(commentsByPostId)
         console.log(postDB)
-
-        if(commentsByPostId.length === 0){
-            throw new BadRequestError("Não há comentários nesse posts")
-        }
 
         const postModels = new PostsModels(
             postDB.id,
@@ -111,6 +107,7 @@ export class PostsBussiness {
             content: postModels.getContent(),
             likes:postModels.getLikes(),
             deslikes: postModels.getLikes(),
+            commentQuantity: postModels.getComments(),
             createdAt: postModels.getCreatedAt(),
             updatedAt: postModels.getUpdatedAt(),
             creator:{
@@ -170,7 +167,7 @@ export class PostsBussiness {
         const postDB = await this.postsDatabase.findPost(idPost)
 
         if(!postDB){
-            throw new BadRequestError("Esse post está incorreto ou não existe")
+            throw new BadRequestError("Esse idPost está incorreto ou não existe mais")
         }
         
         await this.postsDatabase.deletePost(postDB)

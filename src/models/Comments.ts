@@ -30,7 +30,7 @@ export interface CommentModelIdPost {
 }
 
 export interface LikeDislikeCommentDB {
-    comment_id:string,
+    comments_id:string,
     user_id: string,
     post_id: string,
     like: number

@@ -10,7 +10,7 @@ const commentsMock = [
         post_id: "id-mock-post-hello",
         comment: "Bom dia, tenha um ótimo final de semana",
         likes: 1,
-        deslike: 0,
+        deslikes: 0,
         created_at: new Date().toDateString()
     },
     {
@@ -20,7 +20,7 @@ const commentsMock = [
         post_id: "id-mock-post-hello",
         comment: "Amo essa música <3",
         likes: 1,
-        deslike: 0,
+        deslikes: 0,
         created_at: new Date().toDateString()
     }
 ]
@@ -51,6 +51,13 @@ export class CommentDatabaseMock {
     public findComments = async (idComments: string): Promise<CommentDB> => {
 
         const [results] = commentsMock.filter((comment)=> comment.id === idComments)
+
+        return results
+    }
+
+    public findCommentsByIdPost = async (idPost: string): Promise<CommentDB[]> =>{
+
+        const results = commentsMock.filter((comment)=> comment.post_id === idPost)
 
         return results
     }
@@ -112,5 +119,12 @@ export class CommentDatabaseMock {
         // .update(post)
         // .where({ id: post.id })
 
+    }
+
+    public deleteComment = async (commentDB: CommentDB):Promise<void> =>{
+        // await BaseDatabase
+        // .connection(CommentDatabase.TABLE_COMMENTS)
+        // .where({ id: commentDB.id })
+        // .delete()
     }
 }

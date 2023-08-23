@@ -6,6 +6,7 @@ import { PostsDataBaseMocks } from "../../mocks/PostDatabaseMock"
 import { TokenManagerMock } from "../../mocks/TokenManagerMock"
 import { UserDatabaseMock } from "../../mocks/UserDatabaseMock"
 import { UnauthorizedError } from "../../../src/errors/UnauthorizedError"
+import { CommentDatabaseMock } from "../../mocks/CommentsDatabaseMock"
 
 
 
@@ -17,7 +18,8 @@ describe("Testando o createPost", ()=>{
         new PostsDataBaseMocks(),
         new IdGeneratorMock(),
         new TokenManagerMock(),
-        new UserDatabaseMock()
+        new UserDatabaseMock(),
+        new CommentDatabaseMock()
     )
 
     // Lista

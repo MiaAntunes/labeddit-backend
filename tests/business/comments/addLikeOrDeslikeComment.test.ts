@@ -1,6 +1,6 @@
 import { ZodError } from "zod";
 import { CommentsBusiness } from "../../../src/business/CommentsBusiness";
-import { CommentDatabaseMock } from "../../mocks/CommentsDatabasMock";
+import { CommentDatabaseMock } from "../../mocks/CommentsDatabaseMock";
 import { IdGeneratorMock } from "../../mocks/IdGeneratorMock";
 import { PostsDataBaseMocks } from "../../mocks/PostDatabaseMock"
 import { TokenManagerMock } from "../../mocks/TokenManagerMock";
@@ -21,7 +21,6 @@ describe("Testando o createComment", () => {
     test("Recebe o idComments, idPost, like, token e retorna mensagem - Retirando o like", async () => {
         const input = LikeOrDeslikeCommentsSchema.parse({
             idComments: "id-mock-post-hello-comment",
-            idPost: "id-mock-post-hello",
             likeOrDeslike: true,
             token: "token-mock-fulano"
         })
@@ -38,7 +37,6 @@ describe("Testando o createComment", () => {
     test("Recebe o idComments, idPost, like, token e retorna mensagem - Adicionando o deslike", async () => {
         const input = LikeOrDeslikeCommentsSchema.parse({
             idComments: "id-mock-post-hello-comment",
-            idPost: "id-mock-post-hello",
             likeOrDeslike: false,
             token: "token-mock-fulano"
         })
@@ -55,7 +53,6 @@ describe("Testando o createComment", () => {
     test("Recebe o idComments, idPost, like, token e retorna mensagem - Retirando o deslike", async () => {
         const input = LikeOrDeslikeCommentsSchema.parse({
             idComments: "id-mock-post-music-comment",
-            idPost: "id-mock-post-music",
             likeOrDeslike: false,
             token: "token-mock-astrodev"
         })
@@ -75,7 +72,6 @@ describe("Testando o createComment", () => {
         try {
             const input = LikeOrDeslikeCommentsSchema.parse({
                 idComments: 0,
-                idPost: 0,
                 likeOrDeslike: "false",
                 token: 0
             })
@@ -89,13 +85,6 @@ describe("Testando o createComment", () => {
                         expected: 'string',
                         received: 'number',
                         path: ['idComments'],
-                        message: 'Expected string, received number'
-                    },
-                    {
-                        code: 'invalid_type',
-                        expected: 'string',
-                        received: 'number',
-                        path: ['idPost'],
                         message: 'Expected string, received number'
                     },
                     {
@@ -117,34 +106,12 @@ describe("Testando o createComment", () => {
         }
     })
 
-    //Error do post incorreto
-    test("Recebe idComments, likeOrDeslike, token, porém o idPost incorreto, retornando um error BadRequestError", async () => {
-        expect.assertions(2)
-
-        try {
-            const input = LikeOrDeslikeCommentsSchema.parse({
-                idComments: "id-mock-post-music-comment",
-                idPost: "id-mocusic",
-                likeOrDeslike: false,
-                token: "token-mock-astrodev"
-            })
-            const output = await commentBussiness.putLikeOrDeslikeComment(input)
-        } catch (error) {
-            if (error instanceof BadRequestError) {
-                // console.log(error)
-                expect(error.statusCode).toBe(400)
-                expect(error.message).toBe("Esse post não existe ou id está errado")
-            } 
-        }
-    })
-
     test("Recebe idPost, likeOrDeslike, token, porém o idComments  incorreto, retornando um error BadRequestError", async () => {
         expect.assertions(2)
 
         try {
             const input = LikeOrDeslikeCommentsSchema.parse({
                 idComments: "id-mock-post-music-comt",
-                idPost: "id-mock-post-music",
                 likeOrDeslike: false,
                 token: "token-mock-astrodev"
             })
@@ -166,7 +133,6 @@ describe("Testando o createComment", () => {
         try {
             const input = LikeOrDeslikeCommentsSchema.parse({
                 idComments: "id-mock-post-music-comment",
-                idPost: "id-mock-post-music",
                 likeOrDeslike: false,
                 token: "token-mock-ast"
             })
@@ -189,7 +155,6 @@ describe("Testando o createComment", () => {
         try {
             const input = LikeOrDeslikeCommentsSchema.parse({
                 idComments: "id-mock-post-music-comment",
-                idPost: "id-mock-post-music",
                 likeOrDeslike: true,
                 token: "token-mock-fulano"
             })

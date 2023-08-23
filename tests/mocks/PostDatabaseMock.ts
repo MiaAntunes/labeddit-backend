@@ -75,30 +75,34 @@ export class PostsDataBaseMocks extends BaseDatabase {
     }
 
     
-    public findPostComments = async (idPost: string): Promise <any> =>{
+    // public findPostComments = async (idPost: string): Promise <any> =>{
 
-        // const [results] = await BaseDatabase
-        // .connection(PostsDatabase.TABLE_POSTS)
-        // .select(
-        //     "posts.id AS postId",
-        //     "posts.creator_id AS creatorId",
-        //     "posts.creator_name AS creatorName",
-        //     "posts.content AS content",
-        //     "posts.likes AS postLikes",
-        //     "posts.deslikes AS postDeslikes",
-        //     "posts.created_at AS postCreatedAt",
-        //     "posts.updated_at AS postUpdatedAt",
-        //     "comments.id AS commentId",
-        //     "comments.name AS commentName",
-        //     "comments.comment AS comment",
-        //     "comments.likes AS commentLikes",
-        //     "comments.deslikes AS commentDeslikes",
-        //     "comments.created_at  AS commentCreatedAt",
-        // )
-        // .innerJoin(
-        //     "comments", "comments.post_id", "=", "posts.id"
-        // )
+    //     // const [results] = await BaseDatabase
+    //     // .connection(PostsDatabase.TABLE_POSTS)
+    //     // .select(
+    //     //     "posts.id AS postId",
+    //     //     "posts.creator_id AS creatorId",
+    //     //     "posts.creator_name AS creatorName",
+    //     //     "posts.content AS content",
+    //     //     "posts.likes AS postLikes",
+    //     //     "posts.deslikes AS postDeslikes",
+    //     //     "posts.created_at AS postCreatedAt",
+    //     //     "posts.updated_at AS postUpdatedAt",
+    //     //     "comments.id AS commentId",
+    //     //     "comments.name AS commentName",
+    //     //     "comments.comment AS comment",
+    //     //     "comments.likes AS commentLikes",
+    //     //     "comments.deslikes AS commentDeslikes",
+    //     //     "comments.created_at  AS commentCreatedAt",
+    //     // )
+    //     // .innerJoin(
+    //     //     "comments", "comments.post_id", "=", "posts.id"
+    //     // )
 
-        return "a"
+    //     return "a"
+    // }
+
+    public deletePost = async (postDBUpdate: PostDB):Promise<void> =>{
+
     }
 }

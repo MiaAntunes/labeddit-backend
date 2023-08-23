@@ -46,7 +46,7 @@ export class PostsControllers{
                 token: req.headers.authorization
             })
 
-            const results = await this.postsBusiness.getPostsAll(input)
+            const results = await this.postsBusiness.getPostId(input)
 
             res.status(200).send(results)
         }

@@ -31,6 +31,7 @@ export interface PostIdCommentModel{
     postId: string,
     content: string,
     likes: number,
+    commentQuantity: number,
     deslikes: number,
     createdAt: string,
     updatedAt: string

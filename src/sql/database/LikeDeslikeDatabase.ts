@@ -4,7 +4,7 @@ import { BaseDatabase } from "../BaseDatabase";
 
 
 export class LikesDeslikesDatabase extends BaseDatabase{
-    public static TABLE_LIKEDESLIKE = "likeDeslike"
+    public static TABLE_LIKEDESLIKE = "likeDeslikePost"
 
     public findLikeOrDeslike = async (likeDeslikeDB: LikeDislikeDB): Promise < POST_LIKE | undefined > =>{
 

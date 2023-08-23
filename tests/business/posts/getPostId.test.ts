@@ -5,6 +5,7 @@ import { PostsDataBaseMocks } from "../../mocks/PostDatabaseMock"
 import { TokenManagerMock } from "../../mocks/TokenManagerMock"
 import { UserDatabaseMock } from "../../mocks/UserDatabaseMock"
 import { UnauthorizedError } from "../../../src/errors/UnauthorizedError"
+import { CommentDatabaseMock } from "../../mocks/CommentsDatabaseMock"
 
 // token fulano token-mock-fulano
 // token astrodev token-mock-astrodev
@@ -16,45 +17,25 @@ describe("Testando o getPostAll", () => {
         new PostsDataBaseMocks(),
         new IdGeneratorMock(),
         new TokenManagerMock(),
-        new UserDatabaseMock()
+        new UserDatabaseMock(),
+        new CommentDatabaseMock()
+
     )
 
-    // Receber idPost e o token retornando o post e todos os comentários.
-    test("Receber idPost e o token retornando o post e todos os comentários.", async () => {
+    test("Recebe um idPost e um token , retornando o post do id junto com todos os comentários dele", async ()=>{
 
     })
 
-    // Receber idPost e o token porém com tipagens erradas, retornando um Zod E.
-    test("Receber idPost e o token porém com tipagens erradas, retornando um ZodError", async () => {
-        expect.assertions(1)
-
-        try {
-            
-        } catch (error) {
-            
-        }
+    test("Retorna erro ZodError", async ()=>{
+        
     })
 
-    // Receber idPost porém um token inválido retornando um UnauthorizedError.
-    test("Receber idPost porém um token inválido retornando um UnauthorizedError.", async () => {
-        expect.assertions(2)
-
-        try {
-            
-        } catch (error) {
-            
-        }
+    test("Retorna Unauthorized", async ()=>{
+        
     })
 
-    // Receber token porém o idPost errado retornando um error BadRequestError.
-    test("Receber idPost e o token retornando o post e todos os comentários.", async () => {
-        expect.assertions(2)
-
-        try {
-            
-        } catch (error) {
-            
-        }
+    test("Retorna BadRequestError com a mensagem 'Esse idPost está incorreto ou não existe mais'", async ()=>{
+        
     })
 
 })

@@ -26,6 +26,11 @@ const usersMock: UserDB[] = [
 export class UserDatabaseMock extends BaseDatabase {
   public static TABLE_USERS = "users"
 
+  public async findUserByEmail(
+    email: string
+  ): Promise<UserDB> {
+    return usersMock.filter(user => user.email === email)[0]
+  }
 
   public async findUserId(
     id: string
@@ -33,16 +38,9 @@ export class UserDatabaseMock extends BaseDatabase {
     return usersMock.filter(user => user.id === id)[0]
   }
 
-  public async findUserByEmail(
-    email: string
-  ): Promise<UserDB | undefined> {
-    return usersMock.filter(user => user.email === email)[0]
-  }
-
   public async insertUser(
     newUserDB: UserDB
   ): Promise<void> {
-    let results = []
-    results.push(newUserDB)
+
   }
 }

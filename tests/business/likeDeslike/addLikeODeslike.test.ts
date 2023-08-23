@@ -30,6 +30,21 @@ describe("Testando o addLikeOrDeslike", () => {
         })
     })
 
+    // Recebe o idPost, like, token e retorna mensagem - Dando um deslike
+    test("Recebe o idPost, like, token e retorna mensagem - Dando false", async () => {
+        const input = LikeOrDeslikeSchema.parse({
+            idPost: "id-mock-post-hello",
+            likeOrDeslike: false,
+            token: "token-mock-astrodev"
+        })
+
+        const output = await likeDeslikeBussiness.putLikeOrDeslike(input)
+
+        expect(output).toEqual({
+            message: "Ok"
+        })
+    })
+
     // Recebe o idPost, like, token e retorna mensagem - Retirando o deslike
     test("Recebe o idPost, like, token e retorna mensagem", async () => {
         const input = LikeOrDeslikeSchema.parse({
@@ -64,6 +79,20 @@ describe("Testando o addLikeOrDeslike", () => {
     test("Recebe o idPost, like, token e retorna mensagem", async () => {
         const input = LikeOrDeslikeSchema.parse({
             idPost: "id-mock-post-dance",
+            likeOrDeslike: true,
+            token: "token-mock-fulano"
+        })
+
+        const output = await likeDeslikeBussiness.putLikeOrDeslike(input)
+
+        expect(output).toEqual({
+            message: "Ok"
+        })
+    })
+
+    test("Recebe o idPost, like, token e retorna mensagem", async () => {
+        const input = LikeOrDeslikeSchema.parse({
+            idPost: "id-mock-post-music",
             likeOrDeslike: true,
             token: "token-mock-fulano"
         })

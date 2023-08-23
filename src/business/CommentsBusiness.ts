@@ -83,18 +83,18 @@ export class CommentsBusiness {
     }
 
     public putLikeOrDeslikeComment = async (input: LikeOrDeslikeCommentsInputDto): Promise<LikeOrDeslikeCommentsOutInputDto> => {
-        const { idComments, idPost, likeOrDeslike, token } = input
-
-        const verificationPostExist = await this.postDataBase.findPost(idPost)
-
-        if(!verificationPostExist){
-            throw new BadRequestError("Esse post não existe ou id está errado")
-        }
+        const { idComments, likeOrDeslike, token } = input
 
         const verificationCommentsExist = await this.commentDatabase.findComments(idComments)
 
         if(!verificationCommentsExist){
             throw new BadRequestError("Esse comentário não existe ou id está errado")
+        }
+
+        const verificationPostExist = await this.postDataBase.findPost(verificationCommentsExist.post_id)
+
+        if(!verificationPostExist){
+            throw new BadRequestError("Esse post não existe ou id está errado")
         }
 
         const payload = this.tokenManager.getPayload(token) 
@@ -121,7 +121,7 @@ export class CommentsBusiness {
         const likeSQLlite = likeOrDeslike ? 1 : 0
 
         const likeDeslikeDB: LikeDislikeCommentDB = {
-            comment_id: commentsModels.getId(),
+            comments_id: commentsModels.getId(),
             user_id: payload.id,
             post_id:commentsModels.getPostId(),
             like: likeSQLlite
@@ -179,7 +179,11 @@ export class CommentsBusiness {
         const commentDB = await this.commentDatabase.findComments(idComment)
 
         if(!commentDB){
-            throw new BadRequestError("Esse post está incorreto ou não existe")
+            throw new BadRequestError("Esse comentário está incorreto ou não existe mais")
+        }
+
+        if(commentDB.user_id !== payload.id){
+            throw new UnauthorizedError("Só podem deletar o usuário que criou")
         }
 
         await this.commentDatabase.deleteComment(commentDB)

@@ -1,7 +1,7 @@
 import { ZodError } from "zod";
 import { CommentsBusiness } from "../../../src/business/CommentsBusiness";
 import { CreateCommentSchema } from "../../../src/dto/CommentDto/createComments";
-import { CommentDatabaseMock } from "../../mocks/CommentsDatabasMock";
+import { CommentDatabaseMock } from "../../mocks/CommentsDatabaseMock";
 import { IdGeneratorMock } from "../../mocks/IdGeneratorMock";
 import { PostsDataBaseMocks } from "../../mocks/PostDatabaseMock"
 import { TokenManagerMock } from "../../mocks/TokenManagerMock";
@@ -32,10 +32,11 @@ describe("Testando o createComment", () => {
                 comment: {
                   id: 'id-mock',     
                   userId: 'id-mock-fulano',
-                  userName: 'Fulano',          postId: 'id-mock-post-hello',
+                  userName: 'Fulano',        
+                  postId: 'id-mock-post-hello',
                   comment: 'Como você está?',
                   likes: 0,
-                  deslike: 0,        
+                  deslikes: 0,        
                   createdAt: expect.any(String)
                 }
               }

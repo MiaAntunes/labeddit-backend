@@ -79,7 +79,7 @@ describe("Testando o addLikeOrDeslike", () => {
     test("Recebe o idPost, like, token e retorna mensagem", async () => {
         const input = LikeOrDeslikeSchema.parse({
             idPost: "id-mock-post-dance",
-            likeOrDeslike: true,
+            likeOrDeslike: false,
             token: "token-mock-fulano"
         })
 
@@ -149,7 +149,7 @@ describe("Testando o addLikeOrDeslike", () => {
 
     //Error do post incorreto
     test("Recebe likeOrDeslike, token, porém o idPost incorreto, retornando um error BadRequestError", async () => {
-        // expect.assertions(2)
+        expect.assertions(2)
 
         try {
             const input = LikeOrDeslikeSchema.parse({

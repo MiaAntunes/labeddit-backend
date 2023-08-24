@@ -44,8 +44,8 @@ const postDBMock = [
         creator_id: "id-mock-astrodev",
         creator_name: "Astrodev",
         content: "Music",
-        likes: 103,
-        deslikes: 1,
+        likes: 0,
+        deslikes: 0,
         comments: 10,
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString()

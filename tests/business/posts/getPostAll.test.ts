@@ -30,6 +30,7 @@ describe("Testando o getPostAll", ()=>{
         })
 
         const output = await postBussiness.getPostsAll(input)
+        console.log(output)
         expect(output).toEqual(
             [
                 {
@@ -65,8 +66,8 @@ describe("Testando o getPostAll", ()=>{
                   {
                     postId: 'id-mock-post-dance',
                     content: 'Music',
-                    likes: 103,
-                    deslikes: 1,
+                    likes: 0,
+                    deslikes: 0,
                     comments: 10,
                     createdAt:expect.any(String),
                     updatedAt: expect.any(String),

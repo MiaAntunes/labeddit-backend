@@ -105,7 +105,7 @@ export class PostsBussiness {
             postId: postModels.getId(),
             content: postModels.getContent(),
             likes:postModels.getLikes(),
-            deslikes: postModels.getLikes(),
+            deslikes: postModels.getDeslikes(),
             commentQuantity: postModels.getComments(),
             createdAt: postModels.getCreatedAt(),
             updatedAt: postModels.getUpdatedAt(),

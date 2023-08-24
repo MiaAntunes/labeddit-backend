@@ -28,7 +28,6 @@ describe("Testando Login", () => {
         }
 
         const results = await userBussiness.getUser(input)
-        // console.log(results)
         expect(results).toEqual({
             token: "token-mock-fulano"
         })
@@ -67,7 +66,6 @@ describe("Testando Login", () => {
 
         } catch (error) {
             if (error instanceof BadRequestError) {
-                // console.log(error)
                 expect(error.statusCode).toBe(400)
                 expect(error.message).toBe("'password' incorretos")
             }
@@ -86,8 +84,6 @@ describe("Testando Login", () => {
 
         } catch (error) {
             if(error instanceof ZodError){
-                // console.log(error.issues[0])
-                // console.log(error.issues[1])
                 expect(error.issues).toEqual(
                  [
                     {

@@ -25,13 +25,13 @@ describe("Testando o createComment", () => {
             token: "token-mock-fulano"
         })
         const output = await commentBussiness.putLikeOrDeslikeComment(input)
-        // console.log(output)
         expect(output).toEqual(
             {
                 message: 'Ok'
             }
         )
     })
+
 
     // Recebe o idPost, like, token e retorna mensagem - Retirando um like
     test("Recebe o idComments, idPost, like, token e retorna mensagem - Adicionando o deslike", async () => {
@@ -41,7 +41,6 @@ describe("Testando o createComment", () => {
             token: "token-mock-fulano"
         })
         const output = await commentBussiness.putLikeOrDeslikeComment(input)
-        // console.log(output)
         expect(output).toEqual(
             {
                 message: 'Ok'
@@ -57,13 +56,13 @@ describe("Testando o createComment", () => {
             token: "token-mock-astrodev"
         })
         const output = await commentBussiness.putLikeOrDeslikeComment(input)
-        // console.log(output)
         expect(output).toEqual(
             {
                 message: 'Ok'
             }
         )
     })
+
 
     // Error ZOD
     test("Recebe o idComments, idPost, likeOrDeslike e o token com tipagens erradas e retorna um ZodError", async () => {
@@ -78,7 +77,6 @@ describe("Testando o createComment", () => {
             const output = await commentBussiness.putLikeOrDeslikeComment(input)
         } catch (error) {
             if (error instanceof ZodError) {
-                // console.log(error.issues)
                 expect(error.issues).toEqual([
                     {
                         code: 'invalid_type',
@@ -119,7 +117,6 @@ describe("Testando o createComment", () => {
 
         } catch (error) {
             if (error instanceof BadRequestError) {
-                // console.log(error)
                 expect(error.statusCode).toBe(400)
                 expect(error.message).toBe("Esse comentário não existe ou id está errado")
             } 
@@ -141,7 +138,6 @@ describe("Testando o createComment", () => {
 
         } catch (error) {
             if (error instanceof UnauthorizedError) {
-                // console.log(error)
                 expect(error.statusCode).toBe(401)
                 expect(error.message).toBe("Token inválido")
             }
@@ -162,7 +158,6 @@ describe("Testando o createComment", () => {
             const output = await commentBussiness.putLikeOrDeslikeComment(input)
         } catch (error) {
             if (error instanceof BadRequestError) {
-                // console.log(error)
                 expect(error.statusCode).toBe(400)
                 expect(error.message).toBe("Você não pode curtir seu próprio comentário")
             }

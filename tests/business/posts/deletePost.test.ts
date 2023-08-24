@@ -47,7 +47,6 @@ describe("Testando o deletePost", ()=>{
             const output = await postBussiness.deletePost(input)
         } catch (error) {
             if(error instanceof ZodError){
-                // console.log(error.issues)
                 expect(error.issues).toEqual([
                     {
                         code: 'invalid_type',
@@ -97,7 +96,6 @@ describe("Testando o deletePost", ()=>{
             const output = await postBussiness.deletePost(input)
         } catch (error) {
             if (error instanceof BadRequestError) {
-                // console.log(error)
                 expect(error.statusCode).toBe(400)
                 expect(error.message).toBe("Esse idPost está incorreto ou não existe mais")
             }

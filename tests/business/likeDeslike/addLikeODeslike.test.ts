@@ -79,7 +79,7 @@ describe("Testando o addLikeOrDeslike", () => {
     test("Recebe o idPost, like, token e retorna mensagem", async () => {
         const input = LikeOrDeslikeSchema.parse({
             idPost: "id-mock-post-dance",
-            likeOrDeslike: true,
+            likeOrDeslike: false,
             token: "token-mock-fulano"
         })
 
@@ -120,7 +120,6 @@ describe("Testando o addLikeOrDeslike", () => {
 
         } catch (error) {
             if (error instanceof ZodError) {
-                // console.log(error.issues)
                 expect(error.issues).toEqual([
                     {
                         code: 'invalid_type',
@@ -150,7 +149,7 @@ describe("Testando o addLikeOrDeslike", () => {
 
     //Error do post incorreto
     test("Recebe likeOrDeslike, token, porém o idPost incorreto, retornando um error BadRequestError", async () => {
-        // expect.assertions(2)
+        expect.assertions(2)
 
         try {
             const input = LikeOrDeslikeSchema.parse({
@@ -160,10 +159,8 @@ describe("Testando o addLikeOrDeslike", () => {
             })
 
             const output = await likeDeslikeBussiness.putLikeOrDeslike(input)
-            // console.log(output)
         } catch (error) {
             if (error instanceof BadRequestError) {
-                // console.log(error)
                 expect(error.statusCode).toBe(400)
                 expect(error.message).toBe("Esse post não existe ou id está errado")
             }
@@ -184,7 +181,6 @@ describe("Testando o addLikeOrDeslike", () => {
             const output = await likeDeslikeBussiness.putLikeOrDeslike(input)
         } catch (error) {
             if (error instanceof UnauthorizedError) {
-                // console.log(error)
                 expect(error.statusCode).toBe(401)
                 expect(error.message).toBe("Token inválido")
             }
@@ -205,7 +201,6 @@ describe("Testando o addLikeOrDeslike", () => {
             const output = await likeDeslikeBussiness.putLikeOrDeslike(input)
         } catch (error) {
             if (error instanceof BadRequestError) {
-                // console.log(error)
                 expect(error.statusCode).toBe(400)
                 expect(error.message).toBe("Você não pode curtir seu próprio post")
             }

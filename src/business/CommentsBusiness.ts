@@ -91,12 +91,6 @@ export class CommentsBusiness {
             throw new BadRequestError("Esse comentário não existe ou id está errado")
         }
 
-        const verificationPostExist = await this.postDataBase.findPost(verificationCommentsExist.post_id)
-
-        if(!verificationPostExist){
-            throw new BadRequestError("Esse post não existe ou id está errado")
-        }
-
         const payload = this.tokenManager.getPayload(token) 
 
         if(payload === null){

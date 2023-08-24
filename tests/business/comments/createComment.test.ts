@@ -25,7 +25,6 @@ describe("Testando o createComment", () => {
             token: "token-mock-fulano"
         })
         const output = await commentBussiness.postComment(input)
-        // console.log(output)
         expect(output).toEqual(
             {
                 message: 'Seu comentário foi criado',
@@ -56,7 +55,6 @@ describe("Testando o createComment", () => {
             const output = await commentBussiness.postComment(input)
         } catch (error) {
             if(error instanceof ZodError){
-                // console.log(error.issues)
                 expect(error.issues).toEqual(
                     [
                         {
@@ -118,7 +116,6 @@ describe("Testando o createComment", () => {
             const output = await commentBussiness.postComment(input)
         } catch (error) {
             if (error instanceof BadRequestError) {
-                // console.log(error)
                 expect(error.statusCode).toBe(400)
                 expect(error.message).toBe("Esse post não existe")
             }

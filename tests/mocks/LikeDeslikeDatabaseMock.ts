@@ -23,9 +23,8 @@ export class LikeDeslikeDatabaseMock {
     public findLikeOrDeslike = async (likeDeslikeDB: LikeDislikeDB): Promise < POST_LIKE | undefined > =>{
 
         const [result] = likeDeslikeMocks.filter((like)=>{
-            return like.like === likeDeslikeDB.like && like.user_id === likeDeslikeDB.user_id && like.post_id === likeDeslikeDB.post_id
+            return  like.user_id === likeDeslikeDB.user_id && like.post_id === likeDeslikeDB.post_id
         })
-        console.log(result)
 
         if(result === undefined){
             return undefined

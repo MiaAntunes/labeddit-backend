@@ -26,7 +26,6 @@ export class CommentDatabase extends BaseDatabase{
         const results = await BaseDatabase
         .connection(CommentDatabase.TABLE_COMMENTS)
         .where({post_id:idPost})
-        console.log(results, "oi")
 
         return results
     }

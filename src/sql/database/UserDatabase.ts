@@ -10,7 +10,6 @@ export class UserDatabase extends BaseDatabase{
         const [userDB] = await BaseDatabase
           .connection(UserDatabase.TABLE_USERS)
           .where({email: newEmail })
-          console.log(userDB)
     
         return userDB as UserDB 
     }

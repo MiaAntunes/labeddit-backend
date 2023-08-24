@@ -58,7 +58,7 @@ export class PostsBussiness {
     // //! Estou com dúvida para juntar o post + todos os comentários daquele post
     public getPostId = async (input: GetPostIdInputDTO): Promise<GetPostIdOutinputDTO> => {
         const { idPost, token } = input
-        console.log("oie")
+
         const payload = this.tokenManager.getPayload(token)
 
         if (!payload) {
@@ -72,8 +72,7 @@ export class PostsBussiness {
         }
 
         const commentsByPostId = await this.commentDatabase.findCommentsByIdPost(idPost)
-        console.log(commentsByPostId)
-        console.log(postDB)
+
 
         const postModels = new PostsModels(
             postDB.id,

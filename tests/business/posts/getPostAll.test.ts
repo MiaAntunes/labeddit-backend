@@ -30,7 +30,6 @@ describe("Testando o getPostAll", ()=>{
         })
 
         const output = await postBussiness.getPostsAll(input)
-        // console.log(output)
         expect(output).toEqual(
             [
                 {
@@ -100,7 +99,7 @@ describe("Testando o getPostAll", ()=>{
                         }
                       ]
                 )
-                // console.log(error.issues)
+           
             }
         }
     })

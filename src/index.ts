@@ -16,7 +16,6 @@ app.use(express.json())
 app.listen(Number(process.env.PORT) || 3003, () => {
     console.log(`Servidor rodando na porta ${Number(process.env.PORT) || 3003}`)
 })
-console.log("oie")
 app.use('/user', userRouter)
 
 app.use('/posts', postsRouter)

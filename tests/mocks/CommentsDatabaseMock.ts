@@ -19,8 +19,8 @@ const commentsMock = [
         user_name: "Fulano",
         post_id: "id-mock-post-hello",
         comment: "Amo essa música <3",
-        likes: 1,
-        deslikes: 0,
+        likes: 0,
+        deslikes: 1,
         created_at: new Date().toDateString()
     }
 ]
@@ -65,7 +65,7 @@ export class CommentDatabaseMock {
     public findLikeOrDeslike = async (likeDeslikeDB: LikeDislikeCommentDB): Promise<COMMENT_LIKE | undefined> => {
 
         const [result] = likeDeslikeCommentsMock.filter((like)=>{
-            return like.like === likeDeslikeDB.like && like.user_id === likeDeslikeDB.user_id && like.post_id === likeDeslikeDB.post_id
+            return  like.user_id === likeDeslikeDB.user_id && like.post_id === likeDeslikeDB.post_id
         })
 
         if(result === undefined){
@@ -81,50 +81,28 @@ export class CommentDatabaseMock {
 
     public removeLikeDeslike = async (likeDeslikeDB: LikeDislikeCommentDB): Promise<void> => {
 
-        // await BaseDatabase
-        // .connection(CommentDatabase.TABLE_LIKEDESLIKECOMMENTS)
-        // .delete()
-        // .where({
-        //     comments_id: likeDeslikeDB.comment_id,
-        //     user_id: likeDeslikeDB.user_id,
-        //     post_id: likeDeslikeDB.post_id
-        // })
+
 
     }
 
     public updateLikeOrDeslike = async (likeDeslikeDB: LikeDislikeCommentDB): Promise<void> => {
 
-        // await BaseDatabase
-        // .connection(CommentDatabase.TABLE_LIKEDESLIKECOMMENTS)
-        // .update(likeDeslikeDB)
-        // .where({
-        //     comments_id: likeDeslikeDB.comment_id,
-        //     user_id: likeDeslikeDB.user_id,
-        //     post_id: likeDeslikeDB.post_id
-        // }) 
+  
 
     }
 
     public insertLikeDeslike = async (likeDeslikeDB: LikeDislikeCommentDB): Promise<void> => {
 
-        // await BaseDatabase
-        // .connection(CommentDatabase.TABLE_LIKEDESLIKECOMMENTS)
-        // .insert(likeDeslikeDB) 
+   
     }
 
     public updateComment = async (post: CommentDB): Promise<void> => {
 
-        // await BaseDatabase
-        // .connection(CommentDatabase.TABLE_COMMENTS)
-        // .update(post)
-        // .where({ id: post.id })
+    
 
     }
 
     public deleteComment = async (commentDB: CommentDB):Promise<void> =>{
-        // await BaseDatabase
-        // .connection(CommentDatabase.TABLE_COMMENTS)
-        // .where({ id: commentDB.id })
-        // .delete()
+
     }
 }

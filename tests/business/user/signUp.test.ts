@@ -77,7 +77,6 @@ describe("Testando SignUp", ()=>{
                         message: " 'password' deve ser do tipo string"
                       }
                 ])
-                // console.log(error.issues)
 
 
               }

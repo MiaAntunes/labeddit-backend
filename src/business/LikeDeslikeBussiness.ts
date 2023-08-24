@@ -19,7 +19,6 @@ export class LikeDeslikeBusiness{
         const {idPost, likeOrDeslike, token} = input
 
         const verificationPostExist = await this.postsDatabase.findPost(idPost)
-        // console.log(verificationPostExist)
 
         const payload = this.tokenManager.getPayload(token) 
 

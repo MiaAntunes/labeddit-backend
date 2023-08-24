@@ -69,7 +69,6 @@ describe("Testando o createPost", ()=>{
                         }
                       ]
                 )
-                // console.log(error.issues)
             }
         }
     })

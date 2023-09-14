@@ -24,12 +24,13 @@ Foi criada uma API voltada para a administração da plataforma de mídia social
     
 - Post:
     - Consultar a listagem total (obrigatório o token)
+    - Consultar uma postagem por id (obrigatório o token)
     - Criar (obrigatório o token)
-    - Editar (obrigatório o token)
     - Deletar (obrigatório o token)
 
 - Comment:
     - Criar (obrigatório o token)
+    - Deletar (obrigatório o token)
     - Adicionar o like ou deslike e remover-los (obrigatório o token)
 
 - Like or deslike Post:

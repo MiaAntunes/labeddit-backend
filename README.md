@@ -2,6 +2,8 @@
 
 Foi criada uma API voltada para a administração da plataforma de mídia social LabeEddit, com a intenção de aderir ao paradigma de Programação Orientada a Objetos (POO). Essa API permite a criação de perfis de usuários, visualização das postagens de outros usuários, elaboração e modificação de nossas próprias postagens, além da capacidade de expressar apreço ou desagrado por meio de curtidas e descurtidas.
 
+[Link para o Postman](https://documenter.getpostman.com/view/27670051/2s9YC7Sre4)
+
 ## Lista de requisitos
 
 - [x]  Get all post
